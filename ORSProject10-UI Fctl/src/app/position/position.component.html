@@ -1,0 +1,138 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-body shadow-lg grad">
+          <form name="positionForm">
+            <h2 *ngIf="!form.data.id > 0" class="text-primary font-weight-bold" style="text-align: center;">{{ 'Add Position'
+              | translate }}</h2>
+            <h2 *ngIf="form.data.id > 0" class="text-primary font-weight-bold" style="text-align: center;">{{ 'Update
+              Position' | translate }}</h2>
+
+            <!-- Form error messages -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ form.message }}
+            </div>
+            <div *ngIf="!form.error && form.message" class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ form.message }}
+            </div>
+
+            <div class="form-group pt-2">
+              <label><b>{{ 'designation' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+                <input type="text" name="designation" [(ngModel)]="form.data.designation" class="form-control"
+                  (keydown)="filterInput($event, 'errorMessageDesignation', 20, 'char')"
+                  placeholder="{{ 'Enter Designation' | translate }}">
+              </div>
+              <span *ngIf="errorMessageDesignation" class="alertRedColor">{{ errorMessageDesignation }}</span>
+              <span *ngIf="form.inputerror?.designation" class="alertRedColor">{{ form.inputerror.designation }}</span>
+            </div>
+
+            <div class="form-group">
+              <label><b>{{ 'openingdate' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+                <input type="date" name="openingdate" [value]="form.data.openingdate| date:'yyyy-MM-dd'"
+                (input)="form.data.openingdate=parseDate($event.target.value)" 
+                   class="form-control form-control-sm"
+                  required />
+                
+              </div>
+
+              <!-- <div class="form-group pt-2">
+                <label><b>{{ 'date' | translate }}</b><span class="required-field">*</span></label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                  </div>
+                  <input type="date" name="designation" [(ngModel)]="form.data.openingdate" class="form-control"
+                    (keydown)="filterInput($event, 'errorMessageDesignation', 20, 'char')"
+                    placeholder="{{ 'Enter Date' | translate }}">
+                </div>
+                <span *ngIf="errorMessagedate" class="alertRedColor">{{ errorMessageDesignation }}</span>
+                <span *ngIf="form.inputerror?.designation" class="alertRedColor">{{ form.inputerror.openingdate }}</span>
+              </div> -->
+  
+
+              <span *ngIf="form.inputerror.openingdate" class="alertRedColor">{{ form.inputerror.openingdate }}</span>
+            </div>
+
+            <div class="form-group">
+              <label><b>{{ 'condition' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+                <select class="form-control" name="condition" [(ngModel)]="form.data.condition" aria-label="ngSelected">
+                  <option [ngValue]="undefined">{{ 'Select condition' | translate }}</option>
+                  <option *ngFor="let position of form.preload.Positionlist" [value]="position">{{ position }}</option>
+                </select>
+              </div>
+              <span *ngIf="form.inputerror.condition" class="alertRedColor">{{ form.inputerror.condition }}</span>
+            </div>
+
+            <div class="form-group pt-2">
+              <label><b>{{ 'requiredexperience' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-mobile grey-text"></i></div>
+                </div>
+                <input type="text" name="requiredexperience" [(ngModel)]="form.data.requiredexperience" class="form-control"
+                (keydown)="filterInput($event, 'errorMessagerequiredexperience', 10, 'int')"
+                  placeholder="{{ 'Enter requiredexperience' | translate }}" >
+              </div>
+              <span *ngIf="errorMessagerequiredexperience" class="alertRedColor">{{ errorMessagerequiredexperience }}</span>
+              <span *ngIf="form.inputerror?.requiredexperience" class="alertRedColor">{{ form.inputerror.requiredexperience }}</span>
+            </div>
+
+
+            <!-- Form buttons -->
+            <div class="form-group text-center">
+              <button (click)="submit()" class="btn btn-success mr-2">{{ 'Save' | translate }}</button>
+              <button (click)="forward('/positionlist')" type="button" class="btn btn-warning">{{ 'List' | translate
+                }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-body shadow-lg grad">
+          <form name="userForm">
+            <h2 *ngIf="!form.data.id > 0" class="text-primary font-weight-bold" style="text-align: center;">{{ 'Add Owner'
+              | translate }}</h2>
+            <h2 *ngIf="form.data.id > 0" class="text-primary font-weight-bold" style="text-align: center;">{{ 'Update
+              Owner' | translate }}</h2>
+
+            <!-- Form error messages -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ form.message }}
+            </div>
+            <div *ngIf="!form.error && form.message" class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ form.message }}
+            </div>
+
+            <div class="form-group pt-2">
+              <label><b>{{ 'Name' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+                <input type="text" name="name" [(ngModel)]="form.data.name" class="form-control"
+                  (keydown)="filterInput($event, 'errorMessageName', 20, 'char')"
+                  placeholder="{{ 'Enter Name' | translate }}">
+              </div>
+              <span *ngIf="errorMessageName" class="alertRedColor">{{ errorMessageName }}</span>
+              <span *ngIf="form.inputerror?.name" class="alertRedColor">{{ form.inputerror.name }}</span>
+            </div>
+
+            <div class="form-group">
+              <label><b>{{ 'DateOfBirth' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+                <select class="form-control" name="dateOfBirth" [(ngModel)]="form.dateOfBirth" aria-label="ngSelected">
+                  <option [ngValue]="undefined">{{ 'Select DateOfBirth' | translate }}</option>
+                  <option *ngFor="let dateOfBirth of form.preload.ownerlist2" [ngValue]="dateOfBirth">{{ dateOfBirth }}</option>
+                </select>
+                
+                
+              </div>
+
+              <span *ngIf="form.inputerror.dateOfBirth" class="alertRedColor">{{ form.inputerror.dateOfBirth }}</span>
+            </div>
+
+            <div class="form-group">
+              <label><b>{{ 'VehicleId' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+                <select class="form-control" name="vehicleId" [(ngModel)]="form.data.vehicleId" aria-label="ngSelected">
+                  <option [ngValue]="undefined">{{ 'Select VehicleId' | translate }}</option>
+                  <option *ngFor="let vehicleId of form.preload.ownerlist" [value]="vehicleId">{{ vehicleId }}</option>
+                </select>
+              </div>
+              <span *ngIf="form.inputerror.vehicleId" class="alertRedColor">{{ form.inputerror.vehicleId }}</span>
+            </div>
+
+            <div class="form-group pt-2">
+              <label><b>{{ 'InsuranceAmount' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-mobile grey-text"></i></div>
+                </div>
+                <input type="text" name="insuranceAmount" [(ngModel)]="form.data.insuranceAmount" class="form-control"
+                (keydown)="filterInput($event, 'errorMessageInsuranceAmount', 10, 'int')"
+                  placeholder="{{ 'Enter InsuranceAmount' | translate }}" >
+              </div>
+              <span *ngIf="errorMessageInsuranceAmount" class="alertRedColor">{{ errorMessageInsuranceAmount }}</span>
+              <span *ngIf="form.inputerror?.insuranceAmount" class="alertRedColor">{{ form.inputerror.insuranceAmount }}</span>
+            </div>
+
+
+            <!-- Form buttons -->
+            <div class="form-group text-center">
+              <button (click)="submit()" class="btn btn-success mr-2">{{ 'Save' | translate }}</button>
+              <button (click)="forward('/ownerlist')" type="button" class="btn btn-warning">{{ 'List' | translate
+                }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
