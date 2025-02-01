@@ -13,7 +13,7 @@
 	</parent>
 
 	<groupId>com.sunilos</groupId>
-	<artifactId>springboottest</artifactId>
+	<artifactId>p10build</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>projectORS</name>
 	<packaging>jar</packaging>
