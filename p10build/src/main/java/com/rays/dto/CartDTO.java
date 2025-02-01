@@ -23,9 +23,11 @@ public class CartDTO extends BaseDTO{
 		return customerName;
 	}
 
+	
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
+	
 
 	public String getProduct() {
 		return product;
@@ -58,28 +60,27 @@ public class CartDTO extends BaseDTO{
 	private Date transationDate;
 
 	
-
 	@Override
 	public String getValue() {
-		// TODO Auto-generated method stub
+		
 		return "customerName";
 	}
 
 	@Override
 	public String getUniqueKey() {
-		// TODO Auto-generated method stub
+		
 		return "customerName";
 	}
 
 	@Override
 	public String getUniqueValue() {
-		// TODO Auto-generated method stub
+		
 		return id+"";
 	}
 
 	@Override
 	public String getLabel() {
-		// TODO Auto-generated method stub
+		
 		return "customerName";
 	}
 

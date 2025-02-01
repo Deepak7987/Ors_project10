@@ -50,7 +50,7 @@
   <div class="container-fluid">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h1 class="text-primary font-weight-bold">{{ 'Cart List' | translate }}</h1>
+        <h1 class="text-primary font-weight-bold">{{ 'Cart Overview List' | translate }}</h1>
       </div>
 
       <div class="row search-inputs p-1 justify-content-center">
@@ -66,6 +66,7 @@
           <input type="date" name="transationDate" [(ngModel)]="form.searchParams.transationDate" class="form-control"
             placeholder="{{ 'Enter Transation Date' | translate }}">
         </div>
+
 
         <div class="col-sm-2">
           <input type="text" name="quantityOrdered" [(ngModel)]="form.searchParams.quantityOrdered" class="form-control"
@@ -133,7 +134,7 @@
               <td>{{ m.customerName }}</td>
               <td>{{ m.product }}</td>
               <td>{{ m.quantityOrdered}}</td>
-              <td>{{ m.transationDate }}</td>
+              <td>{{ m.transationDate | date:'yyyy-MM-dd'}}</td>
               
 
               <td>

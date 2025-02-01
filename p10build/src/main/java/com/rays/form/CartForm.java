@@ -29,8 +29,7 @@ public class CartForm extends BaseForm{
 	public String getCustomerName() {
 		return customerName;
 	}
-
-
+	
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}

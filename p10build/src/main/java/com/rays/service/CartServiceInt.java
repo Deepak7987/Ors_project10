@@ -5,4 +5,5 @@ import com.rays.dto.CartDTO;
 
 public interface CartServiceInt extends BaseServiceInt<CartDTO> {
 
+	
 }

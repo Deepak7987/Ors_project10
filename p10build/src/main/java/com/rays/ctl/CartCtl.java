@@ -29,11 +29,7 @@ public class CartCtl extends BaseCtl<CartForm, CartDTO, CartServiceInt> {
 		list.add("Laptop");
 		res.addResult("Cartlist", list);
 
-		/*
-		 * List list1 = new ArrayList<>(); list1.add("2020-01-01");
-		 * list1.add("2015-03-09"); list1.add("2010-10-09");
-		 * res.addResult("Cartlist2", list1);
-		 */
+		
 
 		return res;
 	}

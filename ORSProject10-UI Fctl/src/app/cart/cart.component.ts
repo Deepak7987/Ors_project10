@@ -15,6 +15,7 @@ export class CartComponent extends BaseCtl {
     super(locator.endpoints.CART, locator, route);
   }
 
+  
   validateForm(form) {
     let flag = true;
     let validator = this.serviceLocator.dataValidator;

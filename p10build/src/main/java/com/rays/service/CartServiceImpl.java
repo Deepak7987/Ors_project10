@@ -11,4 +11,5 @@ import com.rays.dto.CartDTO;
 @Transactional
 public class CartServiceImpl extends BaseServiceImpl<CartDTO, CartDAOInt> implements CartServiceInt {
 
+	
 }

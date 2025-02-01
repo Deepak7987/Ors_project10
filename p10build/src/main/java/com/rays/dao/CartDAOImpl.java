@@ -41,8 +41,8 @@ public class CartDAOImpl extends BaseDAOImpl<CartDTO> implements CartDAOInt{
 		if (!isZeroNumber(dto.getQuantityOrdered())) {
 			whereCondition.add(builder.equal(qRoot.get("quantityOrdered"), dto.getQuantityOrdered()));
 		}
-
 		
+
 
 		return whereCondition;
 
@@ -53,6 +53,5 @@ public class CartDAOImpl extends BaseDAOImpl<CartDTO> implements CartDAOInt{
 	public Class<CartDTO> getDTOClass() {
 		return CartDTO.class;
 	}
-
 
 }
