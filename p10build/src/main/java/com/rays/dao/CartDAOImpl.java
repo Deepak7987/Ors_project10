@@ -30,7 +30,7 @@ public class CartDAOImpl extends BaseDAOImpl<CartDTO> implements CartDAOInt{
 		
 		
 		  if (dto.getTransationDate() != null) {
-	            whereCondition.add(builder.equal(qRoot.get("quantityOrdered"), dto.getTransationDate()));
+	            whereCondition.add(builder.equal(qRoot.get("transationDate"), dto.getTransationDate()));
 	        }
 		if (dto.getProduct() != null && !dto.getProduct().isEmpty()) {
 			whereCondition.add(builder.like(qRoot.get("product"), dto.getProduct() + "%"));
