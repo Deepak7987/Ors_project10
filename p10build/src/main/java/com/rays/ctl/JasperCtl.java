@@ -43,7 +43,7 @@
 *//**
 	 * The Class JasperCtl.
 	 * 
-	 * Deepak Pandey
+	 * pooja jawariya
 	 */
 /*
  * 
